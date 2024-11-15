@@ -1,3 +1,3 @@
 module github.com/teghnet/ethglobal-bangkok/encore
 
-go 1.23.3
+go 1.23
