@@ -72,11 +72,11 @@ export async function setupRequestProveButton(element: HTMLButtonElement) {
         ),
         expectUrl(
             "https://pretix.eu/ethwarsaw/testing1/order/D07DY/5x7wdqnfpfmcgkx5",
-            "Ticket Page",
+            "Ticket Available",
         ),
         startPage(
-            "https://staging-bkk-ucfi.encr.app/app/screen2_voting.html",
-            "Go to Ticket",
+            "/app/screen2_voting.html",
+            "Go to Proof of Ownership",
         ),
         notarize(
             "https://staging-bkk-ucfi.encr.app/me",
