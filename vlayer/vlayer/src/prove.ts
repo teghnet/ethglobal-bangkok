@@ -75,7 +75,7 @@ export async function setupRequestProveButton(element: HTMLButtonElement) {
             "Ticket Available",
         ),
         startPage(
-            "/app/screen2_voting.html",
+            "https://staging-bkk-ucfi.encr.app/app/screen2_voting.html",
             "Go to Proof of Ownership",
         ),
         notarize(
