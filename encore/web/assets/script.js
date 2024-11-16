@@ -145,9 +145,9 @@ function providerChanged() {
     accountButton.hidden = false;
 
     proveButton.hidden = false;
-    vProveButton.hidden = false;
-    vVerifyButton.hidden = false;
-
+    vProveButton.hidden = true;
+    vVerifyButton.hidden = true;
+    ticketButton.hidden = true;
 }
 
 window.addEventListener("web3ProviderChanged", providerChanged);
@@ -156,28 +156,37 @@ window.addEventListener("web3ChainChanged", providerChanged);
 
 window.addEventListener("extWebProveDebug", (event) => {
     console.log("received extWebProveDebug", event.detail);
-
-    fetch(`https://api.x.com/1.1/account/settings.json`, options)
-        .then(        response => response.json())
-        .then(data => {
-        console.log(data);
-    }).catch(error => console.log("ERROR", error));
+    proveButton.disabled=true
 });
 let extWebProof;
 window.addEventListener("extWebProof", (event) => {
     extWebProof = event.detail;
     console.log("received extWebProof", extWebProof);
+    proveButton.hidden = true;
+    vProveButton.hidden = false;
+    vVerifyButton.hidden = true;
+    ticketButton.hidden = true;
 });
 
 window.addEventListener("vLayerProveDebug", (event) => {
     console.log("received vLayerProveDebug", event.detail);
+    vProveButton.disabled=true
 });
 window.addEventListener("vLayerProof", (event) => {
     console.log("received vLayerProof", event.detail);
+    proveButton.hidden = true;
+    vProveButton.hidden = true;
+    vVerifyButton.hidden = false;
+    ticketButton.hidden = true;
 });
 window.addEventListener("vLayerVerifyDebug", (event) => {
     console.log("received vLayerVerifyDebug", event.detail);
+    vVerifyButton.disabled=true
 });
 window.addEventListener("vLayerVerification", (event) => {
     console.log("received vLayerVerification", event.detail);
+    proveButton.hidden = true;
+    vProveButton.hidden = true;
+    vVerifyButton.hidden = true;
+    ticketButton.hidden = false;
 });

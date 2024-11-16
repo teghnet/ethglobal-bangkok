@@ -78,22 +78,6 @@ export async function setupRequestProveButton(element: HTMLButtonElement) {
       logoUrl:
           "https://cdn.prod.website-files.com/649014d99c5194ad73558cd3/64904297d6c456b34b8de1de_Logo.svg",
       steps: [
-        // startPage(
-        //     "https://pretix.eu/ethwarsaw/testing1/order/D07DY/5x7wdqnfpfmcgkx5/",
-        //     "Go to Ticket",
-        // ),
-        // expectUrl(
-        //     "https://pretix.eu/ethwarsaw/testing1/order/D07DY/5x7wdqnfpfmcgkx5/",
-        //     "Ticket Available",
-        // ),
-        // startPage(
-        //     "http://127.0.0.1:4000/app/screen2_voting.html",
-        //     "Go to Proof of Ownership",
-        // ),
-        // expectUrl(
-        //     "http://127.0.0.1:4000/app/screen2_voting.html",
-        //     "Ticket Available",
-        // ),
         startPage("https://x.com/home", "Verify Ticket"),
         expectUrl("https://x.com/home", "Ticket Available"),
         notarize(
