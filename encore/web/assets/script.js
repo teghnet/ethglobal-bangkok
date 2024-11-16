@@ -58,6 +58,8 @@ function changeProvider(newProvider, name) {
         connectButton.hidden = false;
         accountButton.hidden = true;
     })
+
+    window.dispatchEvent(new Event("web3ProviderChanged"));
 }
 
 const accountBox = document.querySelector('#account-box');
@@ -75,9 +77,6 @@ function accountsChanged(accounts) {
     currentAccount = accounts[0];
     console.log("accountChanged", currentAccount);
     accountBox.textContent = currentAccount;
-
-    connectButton.hidden = true;
-    accountButton.hidden = false;
 
     window.dispatchEvent(new Event("web3AccountChanged"));
 }
@@ -97,9 +96,6 @@ function chainChanged(chain) {
     currentChain = chain;
     console.log("chainChanged", currentChain);
     chainBox.textContent = currentChain;
-
-    connectButton.hidden = true;
-    accountButton.hidden = false;
 
     window.dispatchEvent(new Event("web3ChainChanged"));
 }
@@ -126,8 +122,14 @@ function showProviderIcon(provider) {
 function providerChanged() {
     if (!currentAccount || !currentChain) {
         console.log("no account or chain available");
+
+        connectButton.hidden = false;
+        accountButton.hidden = true;
+
         return;
     }
+    connectButton.hidden = true;
+    accountButton.hidden = false;
 
     // fetch(`/permit/sign-request/${currentAccount}/${currentChain}`, options)
     //     .then(response => response.json())
