@@ -24,6 +24,10 @@ var index embed.FS
 
 //encore:api public raw path=/vlayer/*path
 func Index(w http.ResponseWriter, r *http.Request) {
+	if r.URL.Path == "/vlayer/index.html" {
+		http.ServeFileFS(w, r, index, "dist/index.html")
+		return
+	}
 	sub, err := fs.Sub(index, "dist")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
