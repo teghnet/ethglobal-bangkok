@@ -5,10 +5,10 @@ import (
 )
 
 type Response struct {
-	Message string
+	Ticket string
 }
 
 //encore:api public method=GET path=/me
 func Info(ctx context.Context) (*Response, error) {
-	return &Response{Message: "VRX8269"}, nil
+	return &Response{Ticket: "D07DY"}, nil
 }
