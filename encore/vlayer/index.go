@@ -22,7 +22,7 @@ func Assets(w http.ResponseWriter, r *http.Request) {
 //go:embed dist/*.html
 var index embed.FS
 
-//encore:api public raw path=/vlayer/app.html
+//encore:api public raw path=/vlayer/*path
 func Index(w http.ResponseWriter, r *http.Request) {
 	sub, err := fs.Sub(index, "dist")
 	if err != nil {
