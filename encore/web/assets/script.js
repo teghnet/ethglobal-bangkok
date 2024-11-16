@@ -109,61 +109,29 @@ function showProviderIcon(provider) {
     providerIconsDiv.appendChild(img);
 }
 
-
-const options = {
-    headers: {
-        'Content-Type': 'application/json'
-    },
-};
-
-const titleBox = document.querySelector('#title-box');
-const requestBox = document.querySelector('#request-box');
-let requestData;
-
 function providerChanged() {
     if (!currentAccount || !currentChain) {
         console.log("no account or chain available");
-
-        requestData = null;
-        requestBox.innerText = "";
-
         return;
     }
-    fetch(`/permit/sign-request/${currentAccount}/${currentChain}`, options)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-
-            titleBox.innerText = data.title;
-            document.title = data.title;
-
-            return data.request;
-        })
-        .then(data => {
-            requestData = data;
-            requestBox.innerText = JSON.stringify(data, null, 2);
-            resultBox.innerText = "";
-        })
-        .catch(error => console.log("ERROR", error));
+    // fetch(`/permit/sign-request/${currentAccount}/${currentChain}`, options)
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         console.log(data);
+    //
+    //         titleBox.innerText = data.title;
+    //         document.title = data.title;
+    //
+    //         return data.request;
+    //     })
+    //     .then(data => {
+    //         requestData = data;
+    //         requestBox.innerText = JSON.stringify(data, null, 2);
+    //         resultBox.innerText = "";
+    //     })
+    //     .catch(error => console.log("ERROR", error));
 }
 
 window.addEventListener("web3ProviderChanged", providerChanged);
 window.addEventListener("web3AccountChanged", providerChanged);
 window.addEventListener("web3ChainChanged", providerChanged);
-
-const sendButton = document.querySelector('#send-button');
-const resultBox = document.querySelector('#result-box');
-sendButton.addEventListener("click", async () => {
-    const result = await provider.request(requestData);
-    console.log(result);
-
-    fetch(`/permit/encode/${requestData.params[1].message.holder}/${requestData.params[1].message.spender}/${requestData.params[1].message.nonce}/${requestData.params[1].message.expiry}/${result}`, options)
-        .then(response => response.json())
-        .then(data => data.response)
-        .then(data => {
-            console.log(data);
-            resultBox.innerText = data;
-            requestBox.innerText = "";
-        })
-        .catch(error => console.log("ERROR", error));
-})

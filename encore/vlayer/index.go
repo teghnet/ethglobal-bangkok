@@ -20,6 +20,7 @@ func Assets(w http.ResponseWriter, r *http.Request) {
 }
 
 //go:embed dist/*.html
+//go:embed dist/*.svg
 var index embed.FS
 
 //encore:api public raw path=/vlayer/*path

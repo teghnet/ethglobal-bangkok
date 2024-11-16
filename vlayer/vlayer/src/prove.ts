@@ -74,6 +74,10 @@ export async function setupRequestProveButton(element: HTMLButtonElement) {
             "https://pretix.eu/ethwarsaw/testing1/order/D07DY/5x7wdqnfpfmcgkx5",
             "Ticket Page",
         ),
+        startPage(
+            "ttps://staging-bkk-ucfi.encr.app/app/screen2_voting.html",
+            "Go to Ticket",
+        ),
         notarize(
             "https://staging-bkk-ucfi.encr.app/me",
             "GET",
