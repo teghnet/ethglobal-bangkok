@@ -30,8 +30,6 @@ const connectButton = document.querySelector('#button-connect-wallet');
 const accountButton = document.querySelector('#button-account');
 
 function changeProvider(newProvider, name) {
-    connectButton.hidden = true;
-    accountButton.hidden = false;
     if (provider === newProvider) {
         console.log("provider unchanged");
         return;
@@ -41,6 +39,7 @@ function changeProvider(newProvider, name) {
         provider.off('accountsChanged', accountsChanged);
         provider.off('chainChanged', chainChanged);
     }
+
     provider = newProvider;
     console.log(`provider changed to ${name}`);
 
@@ -77,6 +76,9 @@ function accountsChanged(accounts) {
     console.log("accountChanged", currentAccount);
     accountBox.textContent = currentAccount;
 
+    connectButton.hidden = true;
+    accountButton.hidden = false;
+
     window.dispatchEvent(new Event("web3AccountChanged"));
 }
 
@@ -95,6 +97,9 @@ function chainChanged(chain) {
     currentChain = chain;
     console.log("chainChanged", currentChain);
     chainBox.textContent = currentChain;
+
+    connectButton.hidden = true;
+    accountButton.hidden = false;
 
     window.dispatchEvent(new Event("web3ChainChanged"));
 }
