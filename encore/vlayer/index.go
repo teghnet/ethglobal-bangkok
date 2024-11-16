@@ -29,5 +29,5 @@ func Index(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	http.StripPrefix("/vlayer/", http.FileServerFS(index)).ServeHTTP(w, r)
+	http.StripPrefix("/vlayer/", http.FileServerFS(sub)).ServeHTTP(w, r)
 }
