@@ -49,12 +49,12 @@ export async function setupRequestProveButton(element: HTMLButtonElement) {
       },
       logoUrl: "http://twitterswap.com/logo.png",
       steps: [
-        startPage("https://x.com/i/flow/login", "Go to x.com login page"),
-        expectUrl("https://x.com/home", "Log in"),
+        startPage("https://pretix.eu/ethwarsaw/testing1/order/D07DY/5x7wdqnfpfmcgkx5", "Your ticket"),
+        expectUrl("https://pretix.eu/ethwarsaw/testing1/order/D07DY/5x7wdqnfpfmcgkx5", "Ticket Page Needed"),
         notarize(
-          "https://api.x.com/1.1/account/settings.json",
+          "https://staging-bkk-ucfi.encr.app/me/D07DY/5x7wdqnfpfmcgkx5",
           "GET",
-          "Generate Proof of Twitter profile",
+          "Generate Proof of ETHWarsaw Ticket Ownership",
         ),
       ],
     });

@@ -1,0 +1,8 @@
+.provider-icon {
+    float: right;
+}
+.textarea {
+    width: 100%;
+    white-space: pre;
+    font-family: monospace;
+}
