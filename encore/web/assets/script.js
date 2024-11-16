@@ -28,6 +28,7 @@ window.addEventListener("load", () => {
 
 const connectButton = document.querySelector('#button-connect-wallet');
 const accountButton = document.querySelector('#button-account');
+const ticketButton = document.querySelector('#button-ticket');
 
 function changeProvider(newProvider, name) {
     if (provider === newProvider) {
@@ -90,7 +91,7 @@ let currentChain;
 
 function chainChanged(chain) {
     if (chain === currentChain) {
-        console.log("chain unchanged", currentChain);
+        console.log("chain still the same", currentChain);
         return;
     }
     currentChain = chain;
@@ -119,6 +120,12 @@ function showProviderIcon(provider) {
     providerIconsDiv.appendChild(img);
 }
 
+const options = {
+    headers: {
+        'Content-Type': 'application/json'
+    },
+};
+
 function providerChanged() {
     if (!currentAccount || !currentChain) {
         console.log("no account or chain available");
@@ -128,25 +135,19 @@ function providerChanged() {
 
         return;
     }
+
+    console.log("provider changed");
+
     connectButton.hidden = true;
     accountButton.hidden = false;
 
-    // fetch(`/permit/sign-request/${currentAccount}/${currentChain}`, options)
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         console.log(data);
-    //
-    //         titleBox.innerText = data.title;
-    //         document.title = data.title;
-    //
-    //         return data.request;
-    //     })
-    //     .then(data => {
-    //         requestData = data;
-    //         requestBox.innerText = JSON.stringify(data, null, 2);
-    //         resultBox.innerText = "";
-    //     })
-    //     .catch(error => console.log("ERROR", error));
+    fetch(`https://staging-bkk-ucfi.encr.app/me`, options)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            ticketButton.innerText=data.Ticket;
+        })
+        .catch(error => console.log("ERROR", error));
 }
 
 window.addEventListener("web3ProviderChanged", providerChanged);
