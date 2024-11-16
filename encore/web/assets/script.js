@@ -146,9 +146,9 @@ function providerChanged() {
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            ticketButton.innerText=data.Ticket;
+            ticketButton.innerText = data.Ticket;
             ticketButton.hidden = false;
-
+            vlayerButton.hidden = true;
         })
         .catch(error => console.log("ERROR", error));
 }

@@ -7,153 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ETHWarsaw Community Voting</title>
-    <style>
-        body {
-            font-family: "Londrina Solid", serif;
-            margin: 0;
-            padding: 0;
-            background-color: #FFD64D;
-            color: #000;
-        }
-
-        .container {
-            padding: 5em;
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1em 5%;
-            margin-top: 2em;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            text-align: left;
-            padding-left: 260px;
-        }
-
-        .logo img {
-            height: 50px;
-            order: 0;
-        }
-
-        .logo-title {
-            font-size: 3em;
-            font-weight: bold;
-            margin-left: 10px;
-            margin-right: 0;
-            order: 1;
-            text-decoration: none;
-            color: inherit;
-            padding-right: 30px;
-        }
-
-        .logo-title a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .logo-title a:hover {
-            text-decoration: none;
-        }
-
-        .tagline {
-            margin-top: 8px;
-            font-size: 1.1em;
-            line-height: 1.2em;
-            margin-left: 10px;
-            padding-right: 30px;
-        }
-
-
-
-        .welcome {
-            font-size: 2.5em;
-            font-weight: bold;
-            text-align: center;
-            margin-top: 0.5em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .welcome img {
-            height: 100px;
-            margin-left: 20px;
-            padding-bottom: 50px;
-        }
-
-        .voting-options {
-            margin-top: 2em;
-        }
-
-        .option {
-            background-color: #FF3377;
-            color: white;
-            padding: 15px 20px;
-            margin: 10px auto;
-            border-radius: 5px;
-            font-size: 1.2em;
-            width: 80%;
-            max-width: 600px;
-            text-align: left;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .option button {
-            background-color: white;
-            color: black;
-            font-weight: bold;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 15px;
-            cursor: pointer;
-        }
-
-        .add-proposal {
-            background-color: #5648ED;
-            color: white;
-            border: 2px solid #5648ED;
-            padding: 15px 20px;
-            border-radius: 5px;
-            font-size: 1.2em;
-            font-weight: bold;
-            text-align: center;
-            cursor: pointer;
-            margin-top: 2em;
-            display: block;
-            width: 80%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .add-proposal:hover {
-            background-color: #5A65FA;
-        }
-
-        .footer {
-            margin-top: 3em;
-            font-size: 0.9em;
-            color: black;
-            text-align: center;
-        }
-
-        .footer a {
-            color: black;
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <link rel="stylesheet" crossorigin href="/web/assets/style.css">
 </head>
 <body>
     <div class="header">
@@ -174,15 +28,15 @@
         <div class="voting-options">
             <div class="option">
                 <span>What topic should we cover on the next meetup?</span>
-                <button onclick="window.location.href='screen2_voting.html'">Go to Voting</button>
+                <button onclick="window.location.href='/app/voting.html'">Go to Voting</button>
             </div>
             <div class="option">
                 <span>What type of food should we order for the next 3 meetups?</span>
-                <button onclick="window.location.href='screen2_voting.html'">Go to Voting</button>
+                <button onclick="window.location.href='/app/voting.html'">Go to Voting</button>
             </div>
             <div class="option">
                 <span>What boardgame do we want to play during the next game night?</span>
-                <button onclick="window.location.href='screen2_voting.html'">Go to Voting</button>
+                <button onclick="window.location.href='/app/voting.html'">Go to Voting</button>
             </div>
         </div>
         <button class="add-proposal">Add Proposal</button>
