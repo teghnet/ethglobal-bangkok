@@ -16,24 +16,40 @@ import {
   startPage,
 } from "@vlayer/sdk/web_proof";
 
-import { createContext } from "@vlayer/sdk/config";
-
+import { polygonAmoy } from "viem/chains";
 import webProofVerifier from "../../out/WebProofVerifier.sol/WebProofVerifier";
-import { Hex } from "viem";
+import {
+  Chain,
+  createWalletClient,
+  CustomTransport,
+  Hex,
+  http,
+  publicActions,
+} from "viem";
+import { privateKeyToAccount } from "viem/accounts";
 
 const context: {
   webProof: WebProof | undefined;
   provingResult: [Proof, string, Hex] | undefined;
 } = { webProof: undefined, provingResult: undefined };
 
-const { chain, ethClient, account, proverUrl, confirmations } =
-  await createContext({
-    chainName: import.meta.env.VITE_CHAIN_NAME,
-    proverUrl: import.meta.env.VITE_PROVER_URL,
-    jsonRpcUrl: import.meta.env.VITE_JSON_RPC_URL,
-    privateKey: import.meta.env.VITE_PRIVATE_KEY,
-  });
+const createEthClient = (
+    chain: Chain,
+    jsonRpcUrl: string,
+    transport?: CustomTransport,
+) =>
+    createWalletClient({
+      chain,
+      transport: transport || http(jsonRpcUrl),
+    }).extend(publicActions);
 
+const { chain, ethClient, account, proverUrl, confirmations } = {
+  chain: polygonAmoy,
+  ethClient: createEthClient(polygonAmoy, import.meta.env.VITE_JSON_RPC_URL),
+  account: privateKeyToAccount(import.meta.env.VITE_PRIVATE_KEY),
+  proverUrl: import.meta.env.VITE_PROVER_URL,
+  confirmations: 5,
+};
 const twitterUserAddress = account.address;
 
 export async function setupRequestProveButton(element: HTMLButtonElement) {
@@ -47,13 +63,21 @@ export async function setupRequestProveButton(element: HTMLButtonElement) {
         functionName: "main",
         commitmentArgs: ["0x"],
       },
-      logoUrl: "https://cdn.prod.website-files.com/649014d99c5194ad73558cd3/64904297d6c456b34b8de1de_Logo.svg",
+      logoUrl:
+          "https://cdn.prod.website-files.com/649014d99c5194ad73558cd3/64904297d6c456b34b8de1de_Logo.svg",
       steps: [
-        startPage("https://pretix.eu/ethwarsaw/testing1/order/D07DY/5x7wdqnfpfmcgkx5", "Go to Ticket"),
-        expectUrl("https://pretix.eu/ethwarsaw/testing1/order/D07DY/5x7wdqnfpfmcgkx5", "Ticket Page"),
-        startPage("https://staging-bkk-ucfi.encr.app/me", "Go My Info"),
-        notarize("https://staging-bkk-ucfi.encr.app/me", "GET",
-          "Generate Proof of ETHWarsaw Ticket Ownership",
+        startPage(
+            "https://pretix.eu/ethwarsaw/testing1/order/D07DY/5x7wdqnfpfmcgkx5",
+            "Go to Ticket",
+        ),
+        expectUrl(
+            "https://pretix.eu/ethwarsaw/testing1/order/D07DY/5x7wdqnfpfmcgkx5",
+            "Ticket Page",
+        ),
+        notarize(
+            "https://staging-bkk-ucfi.encr.app/me",
+            "GET",
+            "Generate Proof of ETHWarsaw Ticket Ownership",
         ),
       ],
     });
@@ -66,7 +90,7 @@ export async function setupRequestProveButton(element: HTMLButtonElement) {
 export const setupVProverButton = (element: HTMLButtonElement) => {
   element.addEventListener("click", async () => {
     const notaryPubKey =
-      "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAExpX/4R4z40gI6C/j9zAM39u58LJu\n3Cx5tXTuqhhu/tirnBi5GniMmspOTEsps4ANnPLpMmMSfhJ+IFHbc3qVOA==\n-----END PUBLIC KEY-----\n";
+        "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAExpX/4R4z40gI6C/j9zAM39u58LJu\n3Cx5tXTuqhhu/tirnBi5GniMmspOTEsps4ANnPLpMmMSfhJ+IFHbc3qVOA==\n-----END PUBLIC KEY-----\n";
 
     const webProof = {
       tls_proof: context.webProof,
