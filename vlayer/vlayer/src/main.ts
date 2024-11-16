@@ -9,7 +9,7 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
     <div class="logoContainer">
       <img src="vlayer_logo.svg" />
     </div>
-    <button id="prove">Request webproof of twitter account</button>
+    <button id="prove">Prove Ticket Ownership</button>
     <button id="vprove" style="margin-top: 10px">Call vlayer prover</button>
     <button id="vverify" style="margin-top: 10px">Call vlayer verifier</button>
 

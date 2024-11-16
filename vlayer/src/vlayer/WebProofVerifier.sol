@@ -11,7 +11,7 @@ import {ERC721} from "@openzeppelin-contracts-5.0.1/token/ERC721/ERC721.sol";
 contract WebProofVerifier is Verifier, ERC721 {
     address public prover;
 
-    constructor(address _prover) ERC721("TwitterNFT", "TNFT") {
+    constructor(address _prover) ERC721("ETHWarsawTicket", "EWT") {
         prover = _prover;
     }
 
@@ -20,7 +20,7 @@ contract WebProofVerifier is Verifier, ERC721 {
         onlyVerified(prover, WebProofProver.main.selector)
     {
         uint256 tokenId = uint256(keccak256(abi.encodePacked(username)));
-        require(_ownerOf(tokenId) == address(0), "User has already minted a TwitterNFT");
+        require(_ownerOf(tokenId) == address(0), "User has already minted an ETHWarsawTicket");
 
         _safeMint(account, tokenId);
     }

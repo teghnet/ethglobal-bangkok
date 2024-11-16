@@ -12,7 +12,7 @@ contract WebProofProver is Prover {
     using WebProofLib for WebProof;
     using WebLib for Web;
 
-    string constant DATA_URL = "https://api.x.com/1.1/account/settings.json";
+    string constant DATA_URL = "https://staging-bkk-ucfi.encr.app/me";
 
     function main(WebProof calldata webProof, address account)
         public
@@ -21,7 +21,7 @@ contract WebProofProver is Prover {
     {
         Web memory web = webProof.verify(DATA_URL);
 
-        string memory screenName = web.jsonGetString("screen_name");
+        string memory screenName = web.jsonGetString("Ticket");
 
         return (proof(), screenName, account);
     }
