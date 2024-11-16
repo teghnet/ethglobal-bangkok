@@ -7,7 +7,7 @@ import {
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   <div class="container">
     <div class="logoContainer">
-      <img src="vlayer_logo.svg" />
+      <img src="https://staging-bkk-ucfi.encr.app/vlayer/vlayer_logo.svg" />
     </div>
     <button id="prove">Prove Ticket Ownership</button>
     <button id="vprove" style="margin-top: 10px">Call vlayer prover</button>
