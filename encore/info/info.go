@@ -8,8 +8,7 @@ type Response struct {
 	Message string
 }
 
-//encore:api public method=GET path=/info/:name
+//encore:api public method=GET path=/me
 func Info(ctx context.Context, name string) (*Response, error) {
-	msg := "Hello, " + name + "!"
-	return &Response{Message: msg}, nil
+	return &Response{Message: "VRX555"}, nil
 }
