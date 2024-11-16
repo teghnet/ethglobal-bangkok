@@ -49,11 +49,9 @@ export async function setupRequestProveButton(element: HTMLButtonElement) {
       },
       logoUrl: "https://cdn.prod.website-files.com/649014d99c5194ad73558cd3/64904297d6c456b34b8de1de_Logo.svg",
       steps: [
-        startPage("https://pretix.eu/ethwarsaw/testing1/order/D07DY/5x7wdqnfpfmcgkx5", "Your ticket"),
+        startPage("https://pretix.eu/ethwarsaw/testing1/order/D07DY/5x7wdqnfpfmcgkx5", "Go to Ticket"),
         expectUrl("https://pretix.eu/ethwarsaw/testing1/order/D07DY/5x7wdqnfpfmcgkx5", "Ticket Page"),
-        notarize(
-          "https://staging-bkk-ucfi.encr.app/me",
-          "GET",
+        notarize("https://staging-bkk-ucfi.encr.app/me", "GET",
           "Generate Proof of ETHWarsaw Ticket Ownership",
         ),
       ],
