@@ -71,13 +71,17 @@ export async function setupRequestProveButton(element: HTMLButtonElement) {
         //     "Go to Ticket",
         // ),
         // expectUrl(
-        //     "https://staging-bkk-ucfi.encr.app/app/screen2_voting.html",
+        //     "https://pretix.eu/ethwarsaw/testing1/order/D07DY/5x7wdqnfpfmcgkx5/",
         //     "Ticket Available",
         // ),
-        // startPage(
-        //     "https://staging-bkk-ucfi.encr.app/app/screen2_voting.html",
-        //     "Go to Proof of Ownership",
-        // ),
+        startPage(
+            "http://127.0.0.1:4000/app/screen2_voting.html",
+            "Go to Proof of Ownership",
+        ),
+        expectUrl(
+            "http://127.0.0.1:4000/app/screen2_voting.html",
+            "Ticket Available",
+        ),
         notarize(
             "https://staging-bkk-ucfi.encr.app/me", "GET",
             "Generate Proof of ETHWarsaw Ticket Ownership",

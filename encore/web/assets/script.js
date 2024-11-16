@@ -29,6 +29,7 @@ window.addEventListener("load", () => {
 const connectButton = document.querySelector('#button-connect-wallet');
 const accountButton = document.querySelector('#button-account');
 const ticketButton = document.querySelector('#button-ticket');
+const vlayerButton = document.querySelector('#button-vlayer');
 
 function changeProvider(newProvider, name) {
     if (provider === newProvider) {
@@ -146,6 +147,8 @@ function providerChanged() {
         .then(data => {
             console.log(data);
             ticketButton.innerText=data.Ticket;
+            ticketButton.hidden = false;
+
         })
         .catch(error => console.log("ERROR", error));
 }
