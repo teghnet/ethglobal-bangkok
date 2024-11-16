@@ -18,7 +18,7 @@ func Assets(w http.ResponseWriter, r *http.Request) {
 //go:embed dist/*.html
 var index embed.FS
 
-//encore:api public raw path=/vl/index.html
+//encore:api public raw path=/vlayer/index.html
 func Index(w http.ResponseWriter, r *http.Request) {
-	http.StripPrefix("/vl/", http.FileServerFS(index)).ServeHTTP(w, r)
+	http.StripPrefix("/vlayer/", http.FileServerFS(index)).ServeHTTP(w, r)
 }
