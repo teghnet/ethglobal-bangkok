@@ -30,6 +30,8 @@ const connectButton = document.querySelector('#button-connect-wallet');
 const accountButton = document.querySelector('#button-account');
 
 function changeProvider(newProvider, name) {
+    connectButton.hidden = true;
+    accountButton.hidden = false;
     if (provider === newProvider) {
         console.log("provider unchanged");
         return;
@@ -42,19 +44,20 @@ function changeProvider(newProvider, name) {
     provider = newProvider;
     console.log(`provider changed to ${name}`);
 
-    connectButton.hidden = true;
-    accountButton.hidden = false;
-
     provider.on('accountsChanged', accountsChanged);
     provider.on('chainChanged', chainChanged);
 
     getAccounts().then(accountsChanged).catch((msg) => {
         console.log("no accounts available");
         console.log(msg);
+        connectButton.hidden = false;
+        accountButton.hidden = true;
     })
     getChain().then(chainChanged).catch((msg) => {
         console.log("no chain available");
         console.log(msg);
+        connectButton.hidden = false;
+        accountButton.hidden = true;
     })
 }
 
