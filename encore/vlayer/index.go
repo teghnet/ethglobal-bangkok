@@ -2,6 +2,7 @@ package vlayer
 
 import (
 	"embed"
+	"io/fs"
 	"net/http"
 )
 
@@ -9,8 +10,13 @@ import (
 var assets embed.FS
 
 //encore:api public raw path=/assets/*path
-func Assets(w http.ResponseWriter, r *http.Request) {
-	http.FileServerFS(assets).ServeHTTP(w, r)
+func Assets(w http.ResponseWriter, r *http.Request) error {
+	sub, err := fs.Sub(assets, "dist")
+	if err != nil {
+		return err
+	}
+	http.FileServerFS(sub).ServeHTTP(w, r)
+	return nil
 }
 
 //go:embed dist/*.html
