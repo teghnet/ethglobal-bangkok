@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@100;300;400;900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETHWarsaw Community Voting</title>
+    <style>
+        body {
+            font-family: "Londrina Solid", serif;
+            margin: 0;
+            padding: 0;
+            background-color: #FFD64D;
+            color: #000;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1em 5%;
+            margin-top: 2em;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            text-align: left;
+            padding-left: 260px;
+        }
+
+        .logo img {
+            height: 50px;
+            order: 0;
+        }
+
+        .logo-title {
+            font-size: 3em;
+            font-weight: bold;
+            margin-left: 10px; 
+            margin-right: 0;
+            order: 1;
+        }
+
+        .tagline {
+            margin-top: 8px;
+            font-size: 1.1em;
+            line-height: 1.2em;
+            margin-left: 10px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1em;
+            margin-right: 16em;
+        }
+
+        .button {
+            background-color: white;
+            color: black;
+            border: 2px solid black;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .button:hover {
+            background-color: black;
+            color: white;
+        }
+
+        .welcome {
+            font-size: 2.5em;
+            font-weight: bold;
+            text-align: center;
+            margin: 2em 0 1em;
+        }
+
+        .welcome img {
+            height: 100px;
+            margin-left: 20px;
+            padding-bottom: 5px;
+        }
+
+        .green-box {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin: 0 auto 2em;
+            max-width: 600px;
+            border-radius: 8px;
+            font-size: 1.6em;
+        }
+
+        .voting-options {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .option {
+            background-color: #FF3377;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 600px;
+            font-size: 1.2em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .option button {
+            background-color: white;
+            color: black;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        .option button:hover {
+            background-color: black;
+            color: white;
+        }
+
+        .footer {
+            margin-top: 3em;
+            font-size: 0.9em;
+            color: black;
+            text-align: center;
+        }
+
+        .footer a {
+            color: black;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <img src="https://lh3.googleusercontent.com/d/1ZmwIkkG6JhaHgUjaDa9whDtrGentL8hL" alt="Glasses">
+            <div>
+                <div class="logo-title">AnonyMight</div>
+                <div class="tagline">Giving communities the power to decide, driven by verified event participation</div>
+            </div>
+        </div>
+        <div class="button-group">
+            <button class="button">Verify with vLayer</button>
+            <button class="button">Connect Wallet</button>
+        </div>
+    </div>
+
+    <div class="welcome">
+        Welcome to ETHWarsaw Community Voting
+        <img src="https://staging-bkk-ucfi.encr.app/web/assets/nouns_assets_squid0.png" alt="Squid Image">
+    </div>
+
+    <div class="green-box">
+        What topic should we cover on the next meetup?<br>
+        Voting ends on December 15th 2024 at 23:59 CET
+    </div>
+
+    <div class="voting-options">
+        <div class="option">
+            <span>Interplanetary Consensus: the Filecoin Stack Explained (in Plain Language)</span>
+            <button>Vote</button>
+        </div>
+        <div class="option">
+            <span>StarkNet: The road to decentralization</span>
+            <button>Vote</button>
+        </div>
+        <div class="option">
+            <span>Charting a course toward sustainable public goods funding</span>
+            <button>Vote</button>
+        </div>
+    </div>
+
+    <div class="footer">
+        <a href="#">Terms & Conditions</a>
+        <span> | </span>
+        <a href="#">Reach out to us on X</a>
+    </div>
+</body>
+</html>

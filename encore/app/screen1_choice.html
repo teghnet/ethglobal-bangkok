@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@100;300;400;900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETHWarsaw Community Voting</title>
+    <style>
+        body {
+            font-family: "Londrina Solid", serif;
+            margin: 0;
+            padding: 0;
+            background-color: #FFD64D;
+            color: #000;
+        }
+
+        .container {
+            padding: 5em;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1em 5%;
+            margin-top: 2em;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            text-align: left;
+            padding-left: 260px;
+        }
+
+        .logo img {
+            height: 50px;
+            order: 0;
+        }
+
+        .logo-title {
+            font-size: 3em;
+            font-weight: bold;
+            margin-left: 10px; 
+            margin-right: 0;
+            order: 1;
+        }
+
+        .tagline {
+            margin-top: 8px;
+            font-size: 1.1em;
+            line-height: 1.2em;
+            margin-left: 10px;
+        }
+
+        
+
+        .welcome {
+            font-size: 2.5em;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 0.5em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .welcome img {
+            height: 100px;
+            margin-left: 20px;
+            padding-bottom: 50px;
+        }
+
+        .voting-options {
+            margin-top: 2em;
+        }
+
+        .option {
+            background-color: #FF3377;
+            color: white;
+            padding: 15px 20px;
+            margin: 10px auto;
+            border-radius: 5px;
+            font-size: 1.2em;
+            width: 80%;
+            max-width: 600px;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .option button {
+            background-color: white;
+            color: black;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        .add-proposal {
+            background-color: #4CAF50;
+            color: white;
+            border: 2px solid #4CAF50;
+            padding: 15px 20px;
+            border-radius: 5px;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            margin-top: 2em;
+            display: block;
+            width: 80%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .add-proposal:hover {
+            background-color: #45a049;
+        }
+
+        .footer {
+            margin-top: 3em;
+            font-size: 0.9em;
+            color: black;
+            text-align: center;
+        }
+
+        .footer a {
+            color: black;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <img src="https://lh3.googleusercontent.com/d/1ZmwIkkG6JhaHgUjaDa9whDtrGentL8hL" alt="Glasses">
+            <div>
+                <div class="logo-title">AnonyMight</div>
+                <div class="tagline">Giving communities the power to decide, driven by verified event participation</div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="container">
+        <div class="welcome">
+            Welcome to ETHWarsaw Community Voting
+            <img src="https://staging-bkk-ucfi.encr.app/web/assets/nouns_assets_squid0.png" alt="Squid Image">
+        </div>
+        <div class="voting-options">
+            <div class="option">
+                <span>What topic should we cover on the next meetup?</span>
+                <button>Go to Voting</button>
+            </div>
+            <div class="option">
+                <span>What type of food should we order for the next 3 meetups?</span>
+                <button>Go to Voting</button>
+            </div>
+            <div class="option">
+                <span>What boardgame do we want to play during the next game night?</span>
+                <button>Go to Voting</button>
+            </div>
+        </div>
+        <button class="add-proposal">Add Proposal</button>
+        <div class="footer">
+            <a href="#">Terms & Conditions</a>
+            <span> | </span>
+            <a href="#">Reach out to us on X</a>
+        </div>
+    </div>
+</body>
+</html>
