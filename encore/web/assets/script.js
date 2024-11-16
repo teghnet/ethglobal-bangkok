@@ -26,6 +26,9 @@ window.addEventListener("load", () => {
     console.log("no provider available");
 });
 
+const connectButton = document.querySelector('#button-connect-wallet');
+const accountButton = document.querySelector('#button-account');
+
 function changeProvider(newProvider, name) {
     if (provider === newProvider) {
         console.log("provider unchanged");
@@ -38,6 +41,9 @@ function changeProvider(newProvider, name) {
     }
     provider = newProvider;
     console.log(`provider changed to ${name}`);
+
+    connectButton.hidden = true;
+    accountButton.hidden = false;
 
     provider.on('accountsChanged', accountsChanged);
     provider.on('chainChanged', chainChanged);
@@ -114,6 +120,7 @@ function providerChanged() {
         console.log("no account or chain available");
         return;
     }
+
     // fetch(`/permit/sign-request/${currentAccount}/${currentChain}`, options)
     //     .then(response => response.json())
     //     .then(data => {
