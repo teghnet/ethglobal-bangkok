@@ -6,7 +6,7 @@ let providers = [];
 window.addEventListener("eip6963:announceProvider", (event) => {
     console.log("received provider", event.detail.info);
     providers.push(event.detail);
-    showProviderIcon(event.detail);
+    // showProviderIcon(event.detail);
 });
 
 let provider;
@@ -29,7 +29,9 @@ window.addEventListener("load", () => {
 const connectButton = document.querySelector('#button-connect-wallet');
 const accountButton = document.querySelector('#button-account');
 const ticketButton = document.querySelector('#button-ticket');
-const vlayerButton = document.querySelector('#button-vlayer');
+const proveButton = document.querySelector('#TLSNotaryProve');
+const vProveButton = document.querySelector('#vLayerProve');
+const vVerifyButton = document.querySelector('#vLayerVerify');
 
 function changeProvider(newProvider, name) {
     if (provider === newProvider) {
@@ -142,17 +144,40 @@ function providerChanged() {
     connectButton.hidden = true;
     accountButton.hidden = false;
 
-    fetch(`https://staging-bkk-ucfi.encr.app/me`, options)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            ticketButton.innerText = data.Ticket;
-            ticketButton.hidden = false;
-            vlayerButton.hidden = true;
-        })
-        .catch(error => console.log("ERROR", error));
+    proveButton.hidden = false;
+    vProveButton.hidden = false;
+    vVerifyButton.hidden = false;
+
 }
 
 window.addEventListener("web3ProviderChanged", providerChanged);
 window.addEventListener("web3AccountChanged", providerChanged);
 window.addEventListener("web3ChainChanged", providerChanged);
+
+window.addEventListener("extWebProveDebug", (event) => {
+    console.log("received extWebProveDebug", event.detail);
+
+    fetch(`https://api.x.com/1.1/account/settings.json`, options)
+        .then(        response => response.json())
+        .then(data => {
+        console.log(data);
+    }).catch(error => console.log("ERROR", error));
+});
+let extWebProof;
+window.addEventListener("extWebProof", (event) => {
+    extWebProof = event.detail;
+    console.log("received extWebProof", extWebProof);
+});
+
+window.addEventListener("vLayerProveDebug", (event) => {
+    console.log("received vLayerProveDebug", event.detail);
+});
+window.addEventListener("vLayerProof", (event) => {
+    console.log("received vLayerProof", event.detail);
+});
+window.addEventListener("vLayerVerifyDebug", (event) => {
+    console.log("received vLayerVerifyDebug", event.detail);
+});
+window.addEventListener("vLayerVerification", (event) => {
+    console.log("received vLayerVerification", event.detail);
+});

@@ -54,7 +54,19 @@ const twitterUserAddress = account.address;
 
 export async function setupRequestProveButton(element: HTMLButtonElement) {
   element.addEventListener("click", async () => {
-    const provider = createExtensionWebProofProvider();
+    const provider = createExtensionWebProofProvider({
+      // wsProxyUrl: "ws://localhost:55688",
+    });
+
+    window.dispatchEvent(new CustomEvent("extWebProveDebug", { detail: {
+        address: import.meta.env.VITE_PROVER_ADDRESS,
+        chainId: foundry.id,
+        functionName: "main",
+        commitmentArgs: ["0x"],
+      } }));
+
+
+    console.log("WebProof start!");
     const webProof = await provider.getWebProof({
       proverCallCommitment: {
         address: import.meta.env.VITE_PROVER_ADDRESS,
@@ -74,16 +86,18 @@ export async function setupRequestProveButton(element: HTMLButtonElement) {
         //     "https://pretix.eu/ethwarsaw/testing1/order/D07DY/5x7wdqnfpfmcgkx5/",
         //     "Ticket Available",
         // ),
-        startPage(
-            "http://127.0.0.1:4000/app/screen2_voting.html",
-            "Go to Proof of Ownership",
-        ),
-        expectUrl(
-            "http://127.0.0.1:4000/app/screen2_voting.html",
-            "Ticket Available",
-        ),
+        // startPage(
+        //     "http://127.0.0.1:4000/app/screen2_voting.html",
+        //     "Go to Proof of Ownership",
+        // ),
+        // expectUrl(
+        //     "http://127.0.0.1:4000/app/screen2_voting.html",
+        //     "Ticket Available",
+        // ),
+        startPage("https://x.com/home", "Verify Ticket"),
+        expectUrl("https://x.com/home", "Ticket Available"),
         notarize(
-            "https://staging-bkk-ucfi.encr.app/me", "GET",
+            "https://api.x.com/1.1/account/settings.json", "GET",
             "Generate Proof of ETHWarsaw Ticket Ownership",
         ),
       ],
@@ -91,6 +105,8 @@ export async function setupRequestProveButton(element: HTMLButtonElement) {
 
     console.log("WebProof generated!", webProof);
     context.webProof = webProof;
+
+    window.dispatchEvent(new CustomEvent("extWebProof", { detail: webProof }));
   });
 }
 
@@ -99,10 +115,24 @@ export const setupVProverButton = (element: HTMLButtonElement) => {
     const notaryPubKey =
         "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAExpX/4R4z40gI6C/j9zAM39u58LJu\n3Cx5tXTuqhhu/tirnBi5GniMmspOTEsps4ANnPLpMmMSfhJ+IFHbc3qVOA==\n-----END PUBLIC KEY-----\n";
 
+
     const webProof = {
       tls_proof: context.webProof,
       notary_pub_key: notaryPubKey,
     };
+
+    window.dispatchEvent(new CustomEvent("vLayerProveDebug", { detail: {
+        address: import.meta.env.VITE_PROVER_ADDRESS,
+        functionName: "main",
+        args: [
+          {
+            webProofJson: JSON.stringify(webProof),
+          },
+          twitterUserAddress,
+        ],
+        chainId: chain.id,
+      } }));
+
     const vlayer = createVlayerClient({
       url: proverUrl,
     });
@@ -122,13 +152,23 @@ export const setupVProverButton = (element: HTMLButtonElement) => {
     });
     const provingResult = await vlayer.waitForProvingResult(hash);
     console.log("Proof generated!", provingResult);
+
     context.provingResult = provingResult as [Proof, string, Hex];
+
+    window.dispatchEvent(new CustomEvent("vLayerProof", { detail: provingResult as [Proof, string, Hex] }));
   });
 };
 
 export const setupVerifyButton = (element: HTMLButtonElement) => {
   element.addEventListener("click", async () => {
     isDefined(context.provingResult, "Proving result is undefined");
+
+    window.dispatchEvent(new CustomEvent("vLayerVerifyDebug", { detail: {
+        address: import.meta.env.VITE_VERIFIER_ADDRESS,
+        functionName: "verify",
+        chain,
+        account: account,
+      } }));
 
     const txHash = await ethClient.writeContract({
       address: import.meta.env.VITE_VERIFIER_ADDRESS,
@@ -145,6 +185,9 @@ export const setupVerifyButton = (element: HTMLButtonElement) => {
       retryCount: 60,
       retryDelay: 1000,
     });
+
     console.log("Verified!", verification);
+
+    window.dispatchEvent(new CustomEvent("vLayerVerification", { detail: {txHash,verification} }));
   });
 };

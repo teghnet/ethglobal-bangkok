@@ -6,10 +6,6 @@ body {
     color: #000;
 }
 
-.container {
-    padding: 5em;
-}
-
 .header {
     display: flex;
     justify-content: space-between;
@@ -59,7 +55,35 @@ body {
     padding-right: 30px;
 }
 
+.button-group {
+    display: flex;
+    gap: 1em;
+    margin-right: 16em;
+}
 
+.button {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.button:hover {
+    background-color: black;
+    color: white;
+}
+
+.button.button-on {
+    background-color: #4CAF50;
+    color: white;
+
+}
 
 .welcome {
     font-size: 2.5em;
@@ -71,14 +95,45 @@ body {
     justify-content: center;
 }
 
+.welcome2 {
+    font-size: 2.5em;
+    font-weight: bold;
+    text-align: center;
+    margin: 2em 0 1em;
+}
+
 .welcome img {
     height: 100px;
     margin-left: 20px;
     padding-bottom: 50px;
 }
 
+.welcome2 img {
+    height: 100px;
+    margin-left: 20px;
+    padding-bottom: 5px;
+}
+
+.green-box {
+    background-color: #5648ED;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin: 0 auto 2em;
+    max-width: 600px;
+    border-radius: 8px;
+    font-size: 1.6em;
+}
+
 .voting-options {
     margin-top: 2em;
+}
+
+.voting-options2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
 }
 
 .option {
@@ -91,6 +146,19 @@ body {
     width: 80%;
     max-width: 600px;
     text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.option2 {
+    background-color: #FF3377;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    font-size: 1.2em;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -126,6 +194,16 @@ body {
 
 .add-proposal:hover {
     background-color: #5A65FA;
+}
+
+.add-proposal2 {
+    background-color: #5648ED;
+    color: white;
+}
+
+.option button:hover {
+    background-color: black;
+    color: white;
 }
 
 .footer {
