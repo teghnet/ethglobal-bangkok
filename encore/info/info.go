@@ -9,6 +9,6 @@ type Response struct {
 }
 
 //encore:api public method=GET path=/me
-func Info(ctx context.Context, name string) (*Response, error) {
+func Info(ctx context.Context) (*Response, error) {
 	return &Response{Message: "VRX8269"}, nil
 }
