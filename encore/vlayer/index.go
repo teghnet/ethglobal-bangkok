@@ -10,13 +10,13 @@ import (
 var assets embed.FS
 
 //encore:api public raw path=/assets/*path
-func Assets(w http.ResponseWriter, r *http.Request) error {
+func Assets(w http.ResponseWriter, r *http.Request) {
 	sub, err := fs.Sub(assets, "dist")
 	if err != nil {
-		return err
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
 	}
 	http.FileServerFS(sub).ServeHTTP(w, r)
-	return nil
 }
 
 //go:embed dist/*.html
