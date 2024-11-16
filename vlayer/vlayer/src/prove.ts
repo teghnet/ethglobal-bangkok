@@ -51,6 +51,7 @@ export async function setupRequestProveButton(element: HTMLButtonElement) {
       steps: [
         startPage("https://pretix.eu/ethwarsaw/testing1/order/D07DY/5x7wdqnfpfmcgkx5", "Go to Ticket"),
         expectUrl("https://pretix.eu/ethwarsaw/testing1/order/D07DY/5x7wdqnfpfmcgkx5", "Ticket Page"),
+        startPage("https://staging-bkk-ucfi.encr.app/me", "Go My Info"),
         notarize("https://staging-bkk-ucfi.encr.app/me", "GET",
           "Generate Proof of ETHWarsaw Ticket Ownership",
         ),
