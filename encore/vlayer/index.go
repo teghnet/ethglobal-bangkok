@@ -5,9 +5,7 @@ import (
 	"net/http"
 )
 
-//go:embed dist/assets/*.js
-//go:embed dist/assets/*.css
-//go:embed dist/assets/*.png
+//go:embed dist/assets/*
 var assets embed.FS
 
 //encore:api public raw path=/assets/*path
