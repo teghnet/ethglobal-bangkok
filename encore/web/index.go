@@ -7,6 +7,7 @@ import (
 
 //go:embed assets/*.js
 //go:embed assets/*.css
+//go:embed assets/*.png
 var assets embed.FS
 
 //encore:api public raw path=/web/assets/*path
