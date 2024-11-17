@@ -1,5 +1,5 @@
 import "./style.css";
-import {setupRequestProveButton, setupVerifyButton, setupVProverButton,} from "./prove";
+import {getClient, setupRequestProveButton, setupVerifyButton, setupVProverButton,} from "./prove";
 
 // document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
 //     <button id="prove">Prove Ticket Ownership</button>
@@ -10,3 +10,4 @@ import {setupRequestProveButton, setupVerifyButton, setupVProverButton,} from ".
 setupRequestProveButton(document.querySelector<HTMLButtonElement>("#TLSNotaryProve")!);
 setupVProverButton(document.querySelector<HTMLButtonElement>("#vLayerProve")!);
 setupVerifyButton(document.querySelector<HTMLButtonElement>("#vLayerVerify")!);
+getClient();

@@ -4,7 +4,9 @@
 ## Contracts
 
 ### PROVER
-https://amoy.polygonscan.com/address/0x685cda8dc0a94b8f91889ca389605993b3ff0ccb#code
+https://amoy.polygonscan.com/address/0x03071335b4cdd267bd0c016b3b249415afc463ec#code
 
 ### VERIFIER & ERC721
-https://amoy.polygonscan.com/address/0x5bcb6fc3d7686c478e82bff449e9e2ea5b274ca6#code
+https://amoy.polygonscan.com/address/0x216154c851ebee2c4502493b27e540b2a5ac9a50#code
+
+- successful tx: 

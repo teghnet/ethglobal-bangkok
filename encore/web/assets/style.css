@@ -79,6 +79,14 @@ body {
     color: white;
 }
 
+button:disabled,
+button[disabled],
+button:disabled:hover,
+button[disabled]:hover {
+    background-color: #666666;
+    color: #0e0a0a;
+}
+
 .button.button-on {
     background-color: #4CAF50;
     color: white;

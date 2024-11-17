@@ -28,7 +28,7 @@ window.addEventListener("load", () => {
 
 const connectButton = document.querySelector('#button-connect-wallet');
 const accountButton = document.querySelector('#button-account');
-const ticketButton = document.querySelector('#button-ticket');
+// const ticketButton = document.querySelector('#button-ticket');
 const proveButton = document.querySelector('#TLSNotaryProve');
 const vProveButton = document.querySelector('#vLayerProve');
 const vVerifyButton = document.querySelector('#vLayerVerify');
@@ -129,7 +129,7 @@ const options = {
     },
 };
 
-function providerChanged() {
+async function providerChanged() {
     if (!currentAccount || !currentChain) {
         console.log("no account or chain available");
 
@@ -144,10 +144,10 @@ function providerChanged() {
     connectButton.hidden = true;
     accountButton.hidden = false;
 
-    proveButton.hidden = false;
+    proveButton.hidden = true;
     vProveButton.hidden = true;
     vVerifyButton.hidden = true;
-    ticketButton.hidden = true;
+    // ticketButton.hidden = true;
 }
 
 window.addEventListener("web3ProviderChanged", providerChanged);
@@ -165,7 +165,7 @@ window.addEventListener("extWebProof", (event) => {
     proveButton.hidden = true;
     vProveButton.hidden = false;
     vVerifyButton.hidden = true;
-    ticketButton.hidden = true;
+    // ticketButton.hidden = true;
 });
 
 window.addEventListener("vLayerProveDebug", (event) => {
@@ -177,7 +177,7 @@ window.addEventListener("vLayerProof", (event) => {
     proveButton.hidden = true;
     vProveButton.hidden = true;
     vVerifyButton.hidden = false;
-    ticketButton.hidden = true;
+    // ticketButton.hidden = true;
 });
 window.addEventListener("vLayerVerifyDebug", (event) => {
     console.log("received vLayerVerifyDebug", event.detail);
@@ -188,5 +188,50 @@ window.addEventListener("vLayerVerification", (event) => {
     proveButton.hidden = true;
     vProveButton.hidden = true;
     vVerifyButton.hidden = true;
-    ticketButton.hidden = false;
+    // ticketButton.hidden = false;
+
+    votingButtons.forEach((button) => {
+        button.hidden = false;
+        button.addEventListener('click', function () {
+            console.log("vote", button.id);
+        });
+    });
 });
+
+const votingButtons = document.querySelectorAll('.voting-button');
+votingButtons.forEach((button) => {
+    button.addEventListener('click', function () {
+        console.log("vote", button.id);
+    });
+});
+
+let ethClient;
+window.addEventListener("ethClient", (event) => {
+    // wait in loop until current account is available
+    const interval = setInterval(() => {
+        if (currentAccount) {
+            clearInterval(interval);
+            getBalance(currentAccount);
+        }
+        console.log("waiting for account");
+    }, 1000);
+});
+
+
+// Function to get the balance of an address
+async function getBalance(address) {
+    const interval = setInterval(() => {
+        if (currentAccount) {
+            clearInterval(interval);
+            window.dispatchEvent(new CustomEvent("verifyVotingPower", { detail: address }));
+            proveButton.disabled = true;
+        }
+        console.log("waiting for account");
+    }, 1000);
+}
+
+window.addEventListener("noVotingPower", () => {
+    proveButton.disabled = false;
+    proveButton.hidden = false;
+});
+

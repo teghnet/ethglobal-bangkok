@@ -1,1 +1,1 @@
-{"root":["./deploy.ts","./eslint.config.js","./prove.ts","./vite.config.ts","./src/main.ts","./src/prove.ts","./src/vite-env.d.ts"],"version":"5.6.2"}
+{"root":["./deploy.ts","./eslint.config.js","./vite.config.ts","./src/main.ts","./src/prove.ts","./src/vite-env.d.ts"],"version":"5.6.2"}

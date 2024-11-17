@@ -52,6 +52,10 @@ const { chain, ethClient, account, proverUrl, confirmations } = {
 };
 const twitterUserAddress = account.address;
 
+export async function getClient(){
+  window.dispatchEvent(new CustomEvent("ethClient", { detail: ethClient }));
+  return ethClient;
+}
 export async function setupRequestProveButton(element: HTMLButtonElement) {
   element.addEventListener("click", async () => {
     const provider = createExtensionWebProofProvider({
@@ -154,24 +158,47 @@ export const setupVerifyButton = (element: HTMLButtonElement) => {
         account: account,
       } }));
 
-    const txHash = await ethClient.writeContract({
+    await ethClient.writeContract({
       address: import.meta.env.VITE_VERIFIER_ADDRESS,
       abi: webProofVerifier.abi,
       functionName: "verify",
       args: context.provingResult,
       chain,
       account: account,
+    }).then((txHash) => {
+      const verification = ethClient.waitForTransactionReceipt({
+        hash: txHash,
+        confirmations,
+        retryCount: 60,
+        retryDelay: 1000,
+      });
+      console.log("Verified!", verification);
+      window.dispatchEvent(new CustomEvent("vLayerVerification", { detail: {txHash,verification} }));
+    }).catch((error) => {
+        console.error("Error verifying!", error);
     });
-
-    const verification = await ethClient.waitForTransactionReceipt({
-      hash: txHash,
-      confirmations,
-      retryCount: 60,
-      retryDelay: 1000,
-    });
-
-    console.log("Verified!", verification);
-
-    window.dispatchEvent(new CustomEvent("vLayerVerification", { detail: {txHash,verification} }));
   });
 };
+
+window.addEventListener("verifyVotingPower", async (event:Event) => {
+  console.log("received verifyVotingPower", event);
+  const e= event as CustomEvent;
+  const address = e.detail;
+
+  await ethClient.readContract({
+    address: import.meta.env.VITE_VERIFIER_ADDRESS,
+    abi: webProofVerifier.abi,
+    functionName: "balanceOf",
+    args: [address as `0x${string}`],
+    account: account,
+  }).then((result) => {
+    console.log("bal", result);
+    if (result > 0) {
+      window.dispatchEvent(new Event("vLayerVerification"));
+    }else{
+      window.dispatchEvent(new Event("noVotingPower"));
+    }
+  }).catch((error) => {
+    // console.error("Error verifying
+  })
+});
